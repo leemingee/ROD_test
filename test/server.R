@@ -1,14 +1,3 @@
-#
-# This is the server logic of a Shiny web application. You can run the 
-# application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-# 
-#    http://shiny.rstudio.com/
-#
-
-library(shiny)
-
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
    
@@ -30,4 +19,19 @@ shinyServer(function(input, output) {
     data
   })
   
+  
+  output$multi_linear_plot <- renderPlot({
+    
+    simulate_linear(
+      N = input$N,
+      k = as.numeric(input$k),
+      x.center.max = input$x.center.max,
+      x.center.min = input$x.center.min,
+      y.center.max = input$y.center.max,
+      y.center.min = input$y.center.min,
+      slope = input$slope,
+      interval.ratio = input$interval.ratio
+    )
+    
+  })
 })
